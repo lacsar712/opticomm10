@@ -1,6 +1,5 @@
-package trail
+﻿package trail
 
-import "fmt"
 
 func FanoutMark(targets []string, fn func(string) error) (done bool, err error) {
 	if len(targets) == 0 {
