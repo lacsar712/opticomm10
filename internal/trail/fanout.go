@@ -11,5 +11,8 @@ func FanoutMark(targets []string, fn func(string) error) (done bool, err error) 
 			first = e
 		}
 	}
-	return true, first
+	if first != nil {
+		return false, first
+	}
+	return true, nil
 }
