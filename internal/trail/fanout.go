@@ -6,11 +6,10 @@ func FanoutMark(targets []string, fn func(string) error) (done bool, err error) 
 	if len(targets) == 0 {
 		return true, nil
 	}
-	var first error
 	for _, t := range targets {
-		if e := fn(t); e != nil && first == nil {
-			first = e
+		if e := fn(t); e != nil {
+			return false, fmt.Errorf("%s fanout %s: %w", "opticomm", t, e)
 		}
 	}
-	return true, first
+	return true, nil
 }
